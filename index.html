@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+<meta name="theme-color" content="#05060f" />
+<title>Neon Breakout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <div class="cabinet">
+
+      <header class="hud">
+        <div class="hud-block">
+          <span class="hud-label">Score</span>
+          <span class="hud-value" id="score">0</span>
+        </div>
+        <div class="hud-block hud-center">
+          <span class="hud-label">Level</span>
+          <span class="hud-value" id="level">1</span>
+        </div>
+        <div class="hud-block hud-right">
+          <span class="hud-label">Best</span>
+          <span class="hud-value dim" id="best">0</span>
+        </div>
+      </header>
+
+      <div class="combo-row">
+        <div class="combo-track"><div class="combo-fill" id="comboFill"></div></div>
+        <span class="combo-value" id="combo">x1</span>
+      </div>
+
+      <main class="stage" id="stage">
+        <canvas id="game"></canvas>
+
+        <div class="countdown" id="countdown" aria-hidden="true"></div>
+        <div class="serve-hint" id="serveHint">Press Space / Tap to launch</div>
+        <div class="flash" id="flash" aria-hidden="true"></div>
+
+        <div class="overlay screen is-active" id="screen-menu">
+          <div class="panel">
+            <h1 class="title"><span class="title-a">NEON</span><span class="title-b">BREAKOUT</span></h1>
+            <p class="tagline">Shatter the grid. Chase the combo. Don't drop the ball.</p>
+            <div class="stat-row">
+              <div class="stat"><span class="stat-k">Best Score</span><strong class="stat-v" id="menuBest">0</strong></div>
+            </div>
+            <button class="btn btn-primary" id="btnPlay"><span>Play</span></button>
+            <ul class="legend">
+              <li><b>Move</b> &larr; &rarr; / A D / Mouse</li>
+              <li><b>Launch &amp; Fire</b> Space / Click</li>
+              <li><b>Pause</b> P / Esc &nbsp;·&nbsp; <b>Mute</b> M</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="overlay screen" id="screen-pause">
+          <div class="panel panel-sm">
+            <h2 class="screen-title">Paused</h2>
+            <p class="tagline" id="pauseInfo">Level 1</p>
+            <button class="btn btn-primary" id="btnResume"><span>Resume</span></button>
+            <button class="btn btn-ghost" id="btnRestartFromPause"><span>Restart Run</span></button>
+          </div>
+        </div>
+
+        <div class="overlay screen" id="screen-level">
+          <div class="panel panel-sm">
+            <h2 class="screen-title glow-cyan">Level Cleared</h2>
+            <p class="big-number" id="clearBonus">+0</p>
+            <p class="tagline">Next grid loading&hellip;</p>
+            <button class="btn btn-primary" id="btnNextLevel"><span>Next Level</span></button>
+          </div>
+        </div>
+
+        <div class="overlay screen" id="screen-over">
+          <div class="panel panel-sm">
+            <h2 class="screen-title glow-magenta">Game Over</h2>
+            <p class="big-number" id="finalScore">0</p>
+            <p class="tagline" id="overNote">Best 0</p>
+            <div class="stat-row">
+              <div class="stat"><span class="stat-k">Level Reached</span><strong class="stat-v" id="overLevel">1</strong></div>
+              <div class="stat"><span class="stat-k">Bricks Smashed</span><strong class="stat-v" id="overBricks">0</strong></div>
+            </div>
+            <button class="btn btn-primary" id="btnRetry"><span>Play Again</span></button>
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <div class="lives" id="lives" aria-label="Lives"></div>
+        <div class="chips" id="chips"></div>
+        <div class="footer-actions">
+          <button class="icon-btn" id="btnPause" title="Pause (P)" aria-label="Pause">II</button>
+          <button class="icon-btn" id="btnMute" title="Mute (M)" aria-label="Mute">&#9835;</button>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/input.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/entities.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
