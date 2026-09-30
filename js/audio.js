@@ -13,6 +13,20 @@
         const stored = storage.getItem("neon-breakout-muted");
         if (stored === "1") this.muted = true;
       } catch (e) { /* storage unavailable */ }
+
+      // Listen for CrazyGames SDK mute settings
+      if (global.CrazyGames?.SDK?.game) {
+        // Initial state
+        if (global.CrazyGames.SDK.game.settings?.muteAudio) {
+          this.muted = true;
+        }
+        // Listener for changes
+        global.CrazyGames.SDK.game.addSettingsChangeListener((settings) => {
+          if (settings.muteAudio !== undefined) {
+            this.muted = settings.muteAudio;
+          }
+        });
+      }
     },
 
     unlock() {
