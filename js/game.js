@@ -174,7 +174,8 @@
       };
 
       try {
-        this.best = parseInt(global.localStorage.getItem("neon-breakout-best") || "0", 10) || 0;
+        const storage = global.CrazyGames?.SDK?.data || global.localStorage;
+        this.best = parseInt(storage.getItem("neon-breakout-best") || "0", 10) || 0;
       } catch (err) {
         this.best = 0;
       }
@@ -472,7 +473,10 @@
     saveBest() {
       const isBest = this.score > this.bestAtRunStart;
       if (this.score > this.best) this.best = this.score;
-      try { global.localStorage.setItem("neon-breakout-best", String(this.best)); } catch (err) { /* ignore */ }
+      try { 
+        const storage = global.CrazyGames?.SDK?.data || global.localStorage;
+        storage.setItem("neon-breakout-best", String(this.best)); 
+      } catch (err) { /* ignore */ }
       return isBest;
     },
 

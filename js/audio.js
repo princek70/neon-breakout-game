@@ -9,7 +9,8 @@
 
     load() {
       try {
-        const stored = global.localStorage.getItem("neon-breakout-muted");
+        const storage = global.CrazyGames?.SDK?.data || global.localStorage;
+        const stored = storage.getItem("neon-breakout-muted");
         if (stored === "1") this.muted = true;
       } catch (e) { /* storage unavailable */ }
     },
@@ -41,7 +42,10 @@
 
     toggleMute() {
       this.muted = !this.muted;
-      try { global.localStorage.setItem("neon-breakout-muted", this.muted ? "1" : "0"); } catch (e) { /* ignore */ }
+      try {
+        const storage = global.CrazyGames?.SDK?.data || global.localStorage;
+        storage.setItem("neon-breakout-muted", this.muted ? "1" : "0");
+      } catch (e) { /* ignore */ }
       return this.muted;
     },
 
